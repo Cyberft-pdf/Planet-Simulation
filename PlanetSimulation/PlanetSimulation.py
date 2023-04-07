@@ -1,6 +1,5 @@
 import pygame
 import math
-import button
 import sys
 
 
@@ -9,6 +8,8 @@ pygame.init()
 WIDTH, HEIGHT = 1200,800
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Planet Simulation")
+
+
 
 WHITE = (255,255,255)
 YELLOW =(255,255,0)
@@ -19,16 +20,30 @@ BLACK = (0,0,0)
 GREEN = (80, 200, 120)
 TEXT_COL = (255, 0, 255)
 font = pygame.font.SysFont(None, 24)
+clock = pygame.time.Clock()
 
 start_img = pygame.image.load('start.png').convert_alpha()
 exit_img = pygame.image.load('menu.png').convert_alpha()
 
+button_image_tr1 = pygame.transform.scale(start_img, (170, 95))
+
+button_image_tr2 = pygame.transform.scale(exit_img, (1500, 1100))
+
+button_width = 165
+button_widt2 = 400
+button_height = 90
+button_height2 = 300
+button_x = (button_height) // 2
+button_y = (button_height2) // 2
+button_rect = pygame.Rect(button_x, button_y, button_width, button_height)
 
 
-start_button = button.Button(300, 300, start_img, 3)
-exit_button = button.Button(450, 200, exit_img, 3)
+start_button_rect = start_img.get_rect()
+start_button_rect2 = exit_img.get_rect()
 
-def draw_text(text, font, text_col, x, y):
+
+
+def draw_text(text, font, text_col, x, y,):
   img = font.render(text, True, text_col)
   WIN.blit(img, (x, y))
 
@@ -100,6 +115,8 @@ class Planet:
 
     
 
+    
+
     def update_position(self, planets):
 
         total_fx = total_fy = 0
@@ -118,6 +135,7 @@ class Planet:
         self.orbit.append((self.x, self.y))
 
 
+game_start = False
 
 
 def main():
@@ -145,8 +163,7 @@ def main():
 
 
 
-
-
+    
     while run:
         clock.tick(60)
 
@@ -154,11 +171,13 @@ def main():
         WIN.fill((0,0,0))
         #pygame.display.update()
 
-        draw_text("HALOO HALOO", font, TEXT_COL,160,300)
+        draw_text("data", font, TEXT_COL,160,300)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False 
+
+
         for planet in planets:
             planet.update_position(planets)
             planet.draw(WIN)
@@ -168,4 +187,23 @@ def main():
     
     pygame.quit()
 
-main()
+
+running = True
+while running:
+    # handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        WIN.blit(button_image_tr1, button_rect)
+
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_pressed = pygame.mouse.get_pressed()
+        if button_rect.collidepoint(mouse_pos) and mouse_pressed[0]:
+            main()
+
+
+
+    pygame.display.flip()  # update screen
+
+pygame.quit()
