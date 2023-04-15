@@ -25,22 +25,21 @@ clock = pygame.time.Clock()
 start_img = pygame.image.load('start.png').convert_alpha()
 exit_img = pygame.image.load('menu.png').convert_alpha()
 
-button_image_tr1 = pygame.transform.scale(start_img, (170, 95))
+button_image_tr1 = pygame.transform.scale(start_img, (220, 145))
 
-button_image_tr2 = pygame.transform.scale(exit_img, (1500, 1100))
+button_image_tr2 = pygame.transform.scale(exit_img, (1200, 800))
 
-button_width = 165
+button_width = 190
 button_widt2 = 400
-button_height = 90
-button_height2 = 300
-button_x = (button_height) // 2
-button_y = (button_height2) // 2
+button_height = 115
+button_height2 = 600
+button_x = (button_height) // 1
+button_y = (button_height2) // 1
 button_rect = pygame.Rect(button_x, button_y, button_width, button_height)
 
 
 start_button_rect = start_img.get_rect()
 start_button_rect2 = exit_img.get_rect()
-
 
 
 def draw_text(text, font, text_col, x, y,):
@@ -113,7 +112,6 @@ class Planet:
 
         return force_x, force_y
 
-    
 
     
 
@@ -162,7 +160,6 @@ def main():
     planets = [sun,earth,mars, mercury, venus]
 
 
-
     
     while run:
         clock.tick(60)
@@ -171,7 +168,7 @@ def main():
         WIN.fill((0,0,0))
         #pygame.display.update()
 
-        draw_text("data", font, TEXT_COL,160,300)
+        draw_text("data", font, WHITE,160,300)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -181,7 +178,6 @@ def main():
         for planet in planets:
             planet.update_position(planets)
             planet.draw(WIN)
-            
 
         pygame.display.update() 
     
@@ -195,8 +191,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        WIN.blit(button_image_tr1, button_rect)
 
+        WIN.blit(button_image_tr2, (0, 0))  
+        WIN.blit(button_image_tr1, button_rect,)
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
         if button_rect.collidepoint(mouse_pos) and mouse_pressed[0]:
