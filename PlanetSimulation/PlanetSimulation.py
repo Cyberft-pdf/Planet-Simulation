@@ -168,7 +168,7 @@ def main():
         WIN.fill((0,0,0))
         #pygame.display.update()
 
-        draw_text("data", font, WHITE,160,300)
+        draw_text("", font, WHITE,160,300)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
