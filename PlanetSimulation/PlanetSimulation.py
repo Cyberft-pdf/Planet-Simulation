@@ -106,7 +106,7 @@ class Planet:
         with open("data.txt", "a") as f:
             data = distance, force, theta 
             f.write( "\n")
-            f.write("Delka, sila, uhel\n")
+            f.write("Délka, síla, úhel\n")
             f.write(str(data))
             f.write("\n")
 
