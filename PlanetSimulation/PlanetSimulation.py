@@ -3,6 +3,7 @@ import math
 import sys
 
 
+
 pygame.init()
 
 WIDTH, HEIGHT = 1200,800
