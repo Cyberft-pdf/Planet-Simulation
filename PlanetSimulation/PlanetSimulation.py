@@ -51,7 +51,7 @@ class Planet:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
     SCALE = 200 / AU #jeden AU se rovná 100 pixelů
-    TIMESTEP = 3600*24 #jeden den
+    TIMESTEP = 3600*24 #1 den
     
 
 
