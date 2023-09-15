@@ -10,7 +10,7 @@ WIDTH, HEIGHT = 1200,800
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Planet Simulation")
 
-#code
+#potřebné barvy s kody, fonty atd 
 
 WHITE = (255,255,255)
 YELLOW =(255,255,0)
@@ -23,6 +23,7 @@ TEXT_COL = (255, 0, 255)
 font = pygame.font.SysFont(None, 24)
 clock = pygame.time.Clock()
 
+#obrázky
 start_img = pygame.image.load('start.png').convert_alpha()
 exit_img = pygame.image.load('menu.png').convert_alpha()
 
@@ -50,7 +51,7 @@ def draw_text(text, font, text_col, x, y,):
 class Planet:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
-    SCALE = 200 / AU #jeden AU se rovná 100 pixelů
+    SCALE = 200 / AU #jeden AU se rovná 200 pixelů
     TIMESTEP = 3600*24 #1 den
     
 
