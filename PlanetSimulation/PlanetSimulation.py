@@ -2,13 +2,26 @@ import pygame
 import math
 import sys
 
+WIDTH, HEIGHT = 1200,800
+WIN = pygame.display.set_mode((WIDTH,HEIGHT))
+pygame.display.set_caption("Planet Simulation")
 
 
 pygame.init()
 
-WIDTH, HEIGHT = 1200,800
-WIN = pygame.display.set_mode((WIDTH,HEIGHT))
-pygame.display.set_caption("Planet Simulation")
+#ZACATEK INTRA
+
+
+intro_image = pygame.image.load("PS_intro.png")
+
+intro_duration = 5000
+
+intro_start_time = pygame.time.get_ticks()
+
+
+#KONEC INTRA
+
+
 
 #potřebné barvy s kody, fonty atd 
 
@@ -47,6 +60,9 @@ start_button_rect2 = exit_img.get_rect()
 def draw_text(text, font, text_col, x, y,):
   img = font.render(text, True, text_col)
   WIN.blit(img, (x, y))
+
+
+
 
 class Planet:
     AU = 149.6e6 * 1000
@@ -138,6 +154,7 @@ class Planet:
 game_start = False
 
 
+
 def main():
     run  = True
     clock = pygame.time.Clock()
@@ -160,6 +177,7 @@ def main():
 
 
     planets = [sun,earth,mars, mercury, venus]
+
 
 
     
@@ -186,23 +204,36 @@ def main():
     pygame.quit()
 
 
+
+
+show_intro = True
 running = True
 while running:
-    # handle events
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
 
+    current_time = pygame.time.get_ticks()
+
+    if show_intro:
+            WIN.blit(intro_image, (0, 0))
+            pygame.display.flip()
+
+            if current_time - intro_start_time >= intro_duration:
+                show_intro = False
+
+    else:
         WIN.blit(button_image_tr2, (0, 0))  
         WIN.blit(button_image_tr1, button_rect,)
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
         if button_rect.collidepoint(mouse_pos) and mouse_pressed[0]:
-            main()
+                main()
 
 
 
-    pygame.display.flip()  # update screen
+    pygame.display.flip()  
 
 pygame.quit()
