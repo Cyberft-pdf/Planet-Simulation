@@ -12,7 +12,7 @@ pygame.init()
 #ZACATEK INTRA
 
 
-intro_image = pygame.image.load("PS_intro.png")
+intro_image = pygame.image.load("pictures/PS_intro.png")
 
 intro_duration = 5000
 
@@ -37,8 +37,8 @@ font = pygame.font.SysFont(None, 24)
 clock = pygame.time.Clock()
 
 #obrázky
-start_img = pygame.image.load('start.png').convert_alpha()
-exit_img = pygame.image.load('menu.png').convert_alpha()
+start_img = pygame.image.load("pictures/start.png").convert_alpha()
+exit_img = pygame.image.load("pictures/menu.png").convert_alpha()
 
 button_image_tr1 = pygame.transform.scale(start_img, (220, 145))
 
