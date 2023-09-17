@@ -2,29 +2,19 @@ import pygame
 import math
 import sys
 
+#Základní nastavení - začátek
 WIDTH, HEIGHT = 1200,800
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Planet Simulation")
-
-
 pygame.init()
-
-#ZACATEK INTRA
-
+#Základní nastavení- konec
 
 intro_image = pygame.image.load("pictures/PS_intro.png")
-
 intro_duration = 5000
-
 intro_start_time = pygame.time.get_ticks()
 
 
-#KONEC INTRA
-
-
-
-#potřebné barvy s kody, fonty atd 
-
+#barvy, fonty - začátek
 WHITE = (255,255,255)
 YELLOW =(255,255,0)
 BLUE = (100 ,149, 237)
@@ -35,15 +25,17 @@ GREEN = (80, 200, 120)
 TEXT_COL = (255, 0, 255)
 font = pygame.font.SysFont(None, 24)
 clock = pygame.time.Clock()
+#barvy, fonty - konec
 
-#obrázky
+
+#obrázky - začátek
 start_img = pygame.image.load("pictures/start.png").convert_alpha()
 exit_img = pygame.image.load("pictures/menu.png").convert_alpha()
-
 button_image_tr1 = pygame.transform.scale(start_img, (220, 145))
-
 button_image_tr2 = pygame.transform.scale(exit_img, (1200, 800))
+#obrázky - konec
 
+#velikost tlačítka - začátek
 button_width = 190
 button_widt2 = 400
 button_height = 115
@@ -52,18 +44,18 @@ button_x = (button_height) // 1
 button_y = (button_height2) // 1
 button_rect = pygame.Rect(button_x, button_y, button_width, button_height)
 
-
 start_button_rect = start_img.get_rect()
 start_button_rect2 = exit_img.get_rect()
+#velikost tlačítka - konec
 
 
+#když tak pro napsání textu / nepoužito
 def draw_text(text, font, text_col, x, y,):
   img = font.render(text, True, text_col)
   WIN.blit(img, (x, y))
 
 
-
-
+#hlavní třída
 class Planet:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
@@ -71,7 +63,7 @@ class Planet:
     TIMESTEP = 3600*24 #1 den
     
 
-
+    
     def __init__(self, x, y, radius, color, mass):
         self.x = x 
         self.y = y
@@ -119,7 +111,7 @@ class Planet:
         force_x = math.cos(theta) * force 
         force_y = math.sin(theta) * force
 
-
+        #ukádání do souboru
         with open("data.txt", "a") as f:
             data = distance, force, theta 
             f.write( "\n")
@@ -131,7 +123,6 @@ class Planet:
         return force_x, force_y
 
 
-    
 
     def update_position(self, planets):
 
@@ -154,7 +145,6 @@ class Planet:
 game_start = False
 
 
-
 def main():
     run  = True
     clock = pygame.time.Clock()
@@ -174,7 +164,7 @@ def main():
 
     venus = Planet(-0.723 * Planet.AU, 0, 14, WHITE, 4.8685 * 10**24)
     venus.y_vel = 35.02 * 1000
-
+    #zde můžu přidat další planety
 
     planets = [sun,earth,mars, mercury, venus]
 
@@ -204,8 +194,7 @@ def main():
     pygame.quit()
 
 
-
-
+#hlavní while loop
 show_intro = True
 running = True
 while running:
@@ -216,14 +205,14 @@ while running:
 
 
     current_time = pygame.time.get_ticks()
-
+    #začatek PL_foto
     if show_intro:
             WIN.blit(intro_image, (0, 0))
             pygame.display.flip()
 
             if current_time - intro_start_time >= intro_duration:
                 show_intro = False
-
+    #Pokračování na simulaci
     else:
         WIN.blit(button_image_tr2, (0, 0))  
         WIN.blit(button_image_tr1, button_rect,)
