@@ -62,7 +62,6 @@ class Planet:
     SCALE = 200 / AU #jeden AU se rovná 200 pixelů
     TIMESTEP = 3600*24 #1 den
     
-
     
     def __init__(self, x, y, radius, color, mass):
         self.x = x 
