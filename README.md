@@ -5,4 +5,4 @@
 
 
 
-<p>If you want to use this code you HAVE TO GIVE ME CREDIT FOR IT (if you want to change it and publish it)</p>
+<p>If you want to use this code you HAVE TO GIVE ME CREDIT FOR IT (even if you want to change it and publish it)</p>
