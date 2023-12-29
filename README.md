@@ -6,4 +6,4 @@
 
 
 
-<p>If you want to use this code you HAVE TO GIVE ME CREDIT FOR IT (even if you want to change it and publish it) thank you:)</p>
+<p>If you want to use this code you GIVE ME CREDIT thank you:)</p>
